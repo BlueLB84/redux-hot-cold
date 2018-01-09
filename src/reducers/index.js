@@ -1,4 +1,4 @@
-import {RESTART_GAME, MAKE_GUESS, GENERATE_AURAL_UPDATE} from './actions';
+import {RESTART_GAME, MAKE_GUESS, GENERATE_AURAL_UPDATE} from '../actions';
 
 const initialState = {
     guesses: [],
@@ -7,7 +7,7 @@ const initialState = {
     correctAnswer: Math.round(Math.random() * 100) + 1
 };
 
-export default (state = initialState, action) => {
+export const hotColdReducer = (state = initialState, action) => {
     if (action.type === RESTART_GAME) {
         return Object.assign({}, state, {
             guesses: [],
@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
         });
     }
 
-    if (action.type === MAKE_GUESS) {
+    else if (action.type === MAKE_GUESS) {
         let feedback, guess;
 
         guess = parseInt(action.guess, 10);
@@ -50,7 +50,7 @@ export default (state = initialState, action) => {
         });
     }
 
-    if (action.type === GENERATE_AURAL_UPDATE) {
+    else if (action.type === GENERATE_AURAL_UPDATE) {
         const {guesses, feedback} = state;
 
         // If there's not exactly 1 guess, we want to
