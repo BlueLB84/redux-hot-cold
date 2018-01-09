@@ -13,7 +13,7 @@ export const hotColdReducer = (state = initialState, action) => {
             guesses: [],
             feedback: 'Make your guess!',
             auralStatus: '',
-            correctAnswer: action.correctAnswer
+            correctAnswer: Math.round(Math.random() * 100) + 1
         });
     }
 

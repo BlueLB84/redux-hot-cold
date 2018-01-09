@@ -46,14 +46,32 @@ describe('reducer', () => {
 			state = hotColdReducer(state, restartGame());
 			expect(state).toEqual({ 
 				guesses: [],
-		        correctAnswer: undefined,
+		        correctAnswer: state.correctAnswer,
 		        feedback: 'Make your guess!',
 		        auralStatus: ''
 		    }); 
 		});
 
 		it('Should reset the state with a new random correct answer', () => {
+			const guess = 15;
+			const correctAnswer = 15;
+			let state = {
+				guesses: guess,
+				correctAnswer: correctAnswer
+			}
+			state = hotColdReducer(state, restartGame());
+			expect(state.correctAnswer).not.toEqual(correctAnswer);
+		});
+	});
 
+	describe('makeGuess', () => {
+		it('Should add a new guess to state', () => {
+			const guess = 12;
+			let state = {
+				guesses: guesses
+			}
+			state = hotColdReducer(state, makeGuess(guess));
+			expect(state.guesses).toContain(guess);
 		});
 	});
 });
